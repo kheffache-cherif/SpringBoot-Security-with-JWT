@@ -19,6 +19,7 @@ public class UsersJwtApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UsersJwtApplication.class, args);
 	}
+	/*
 	@PostConstruct
 	void init_users() {
 //ajouter les rôles
@@ -33,7 +34,7 @@ public class UsersJwtApplication {
 		userService.addRoleToUser("admin", "USER");
 		userService.addRoleToUser("Ronaldo", "USER");
 		userService.addRoleToUser("Messi", "USER");
-	}
+	}*/
 	@Bean // creation d'un Bean singlTon un objet pour tout le projet
 	BCryptPasswordEncoder getBCE() {
 		return new BCryptPasswordEncoder();
