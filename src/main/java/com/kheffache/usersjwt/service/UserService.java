@@ -3,6 +3,8 @@ package com.kheffache.usersjwt.service;
 import com.kheffache.usersjwt.entities.Role;
 import com.kheffache.usersjwt.entities.User;
 
+import java.util.List;
+
 public interface UserService {
     User saveUser(User user);
     User findUserByUsername (String username);
@@ -10,4 +12,5 @@ public interface UserService {
 
     Role addRole(Role role);
     User addRoleToUser(String username, String rolename);
+    List<User> fidAllUsers();
 }

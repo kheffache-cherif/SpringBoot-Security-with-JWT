@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Service
 public class UserServiceImpl implements UserService{
@@ -47,5 +49,10 @@ public class UserServiceImpl implements UserService{
         usr.getRoles().add(role);
        // userRepository.save(usr); AVEC @Transactional / A chaque modification le sevice lance un save
         return usr;
+    }
+
+    @Override
+    public List<User> fidAllUsers() {
+        return userRepository.findAll();
     }
 }

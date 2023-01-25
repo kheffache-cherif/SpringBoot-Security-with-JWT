@@ -9,9 +9,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
-
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     //User user;
@@ -34,10 +34,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         System.out.println("je suis la avant !!!!!!!!!");
         http.authorizeRequests().antMatchers("/login").permitAll();
 
+        http.authorizeRequests().antMatchers("/all").hasAuthority("ADMIN");
+
+
+
         System.out.println("je suis la  apres !!!!!!!!!" );
         //pour les autres connection ----> authentification
-     //   http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().authenticated();
             //  a   jout filtre
         http.addFilter(new JWTAuthenticationFilter (authenticationManager())) ;
+        http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
